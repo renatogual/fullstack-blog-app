@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../services/PostService';
+import { Observable } from 'rxjs';
+import { PostListItem } from '../services/dataModel/PostListItem';
 
 @Component({
     selector: 'app-post-list',
@@ -6,37 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class PostListComponent implements OnInit {
-    public postList = postList;
-    constructor() {  
+    public postList: Observable<PostListItem[]>;
+
+    constructor(private postService: PostService) {  
     }
 
     ngOnInit() {
+        this.postList = this.postService.getAllPostsItems();
     }
 }
-
-const postList = [
-    {
-        title: 'Some title',
-        subTitle: 'Sub title',
-        imageUrl: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-        content: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.'
-    },
-    {
-        title: 'Some title',
-        subTitle: 'Sub title',
-        imageUrl: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-        content: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.'
-    },
-    {
-        title: 'Some title',
-        subTitle: 'Sub title',
-        imageUrl: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-        content: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.'
-    },
-    {
-        title: 'Some title',
-        subTitle: 'Sub title',
-        imageUrl: 'https://material.angular.io/assets/img/examples/shiba2.jpg',
-        content: 'The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.'
-    }
-];
