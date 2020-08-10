@@ -3,6 +3,7 @@ import { ApiConfig } from '../../ApiConfig';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostListItem } from './dataModel/PostListItem';
+import { CreatePostDto } from './dataModel/CreatePostDto';
 
 @Injectable()
 export class PostResource {
@@ -13,5 +14,9 @@ export class PostResource {
     
     public findAll(): Observable<PostListItem[]> {
         return this.httpClient.get(this.URL) as Observable<PostListItem[]>;
+    }
+
+    public create(createPostDto: CreatePostDto): Observable<CreatePostDto> {
+        return this.httpClient.post(this.URL, createPostDto) as Observable<CreatePostDto>;
     }
 }
