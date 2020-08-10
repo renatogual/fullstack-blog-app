@@ -9,7 +9,7 @@ export class PostEntity {
     @Column({ length: 500})
     subTitle: string;
     @Column('text')
-    imageURL: string;
+    imageUrl: string;
     @Column('text')
     content: string;
 }
