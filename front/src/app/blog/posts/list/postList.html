@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <ng-container *ngIf="(postList | async) as postListItems; else loading">
-        <table mat-table [dataSource]="postListItems" class="mat-elevation-z8 w-100">
+      <ng-container *ngIf="(getPostList() | async) as postListItems;">
+        <table mat-table [dataSource]="postListItems" class="mat-elevation-z8 w-100 post-list-table">
           <!-- Id Column -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -28,13 +28,10 @@
           </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editPost(row)"></tr>
         </table>
       </ng-container>
-      
-      <ng-template #loading>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-      </ng-template>
+      <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
     </div>
   </div>
 </div>
