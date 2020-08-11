@@ -7,6 +7,7 @@ import { BlogModule } from './blog/BlogModule';
 import { CommonMaterialModules } from 'src/app/common/material/CommonMaterialModules';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginModule } from './login/LoginModule';
+import { AuthModule } from './common/auth/AuthModule';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { LoginModule } from './login/LoginModule';
   ],
   imports: [
     BrowserModule,
+    AuthModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BlogModule,
