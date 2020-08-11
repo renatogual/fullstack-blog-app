@@ -6,6 +6,8 @@ import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EditPostDto } from '../services/dataModel/EditPostDto';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
+import { PostDto } from '../services/dataModel/PostDto';
 
 @Component({
     selector: 'app-create-post-dialog',
@@ -13,7 +15,7 @@ import * as _ from 'lodash';
 })
 
 export class CreatePostDialogComponent implements OnInit{
-    public newPostModel: CreatePostDto = {} as CreatePostDto;
+    public postModel: CreatePostDto | EditPostDto= {} as CreatePostDto;
     public isLoading: false;
     public isEditing: boolean;
 
@@ -24,16 +26,26 @@ export class CreatePostDialogComponent implements OnInit{
 
     ngOnInit(): void {
         this.isEditing = !!_.get(this.data, 'editPostDto');
-        console.log(this.isEditing, this.data);
+        if (this.isEditing) {
+            this.postModel = _.clone(this.data.editPostDto);
+        }
     }
 
     public submit(form: NgForm) {
         if (form.valid) {
-            this.postService.createPost(this.newPostModel)
-                .pipe(finalize(() => this.isLoading = false))
-                .subscribe((response) => {
-                    this.dialogRef.close(response);
-                });
+            this.handleAfterSubmit(
+                this.isEditing ? this.postService.editPost(this.postModel as EditPostDto) : 
+                this.postService.createPost(this.postModel)
+            );
+            
         }
+    }
+
+    private handleAfterSubmit(observable: Observable<PostDto>) {
+        return observable
+            .pipe(finalize(() => this.isLoading = false))
+            .subscribe((response) => {
+                this.dialogRef.close(response);
+            });
     }
 }

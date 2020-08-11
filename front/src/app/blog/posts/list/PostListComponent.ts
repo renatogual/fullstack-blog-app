@@ -38,6 +38,16 @@ export class PostListComponent implements OnInit {
       width: '600px',
       data: {editPostDto: editPost}
     });
+
+    ref.afterClosed().subscribe((editedPost: PostDto) => {
+      if (editedPost) {
+        const list = this.postListSubject.getValue();
+        const postIndex = _.findIndex(list, post => post.id === editedPost.id);
+        list[postIndex] = editedPost;
+        this.postListSubject.next(_.cloneDeep(list));
+      }
+    });
+
   }
 
   public createPost() {

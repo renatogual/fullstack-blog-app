@@ -7,7 +7,7 @@
                     <input type="text" 
                         matInput placeholder="Title"
                         name="title" 
-                        [(ngModel)]="newPostModel.title" 
+                        [(ngModel)]="postModel.title" 
                         required>
                 </mat-form-field>
             </div>
@@ -16,7 +16,7 @@
                     <input type="text" 
                         matInput placeholder="SubTitle"
                         name="subTitle" 
-                        [(ngModel)]="newPostModel.subTitle" 
+                        [(ngModel)]="postModel.subTitle" 
                         required>
                 </mat-form-field>
             </div>
@@ -25,7 +25,7 @@
                     <input type="text" 
                         matInput placeholder="Image Url"
                         name="imageUrl" 
-                        [(ngModel)]="newPostModel.imageUrl" 
+                        [(ngModel)]="postModel.imageUrl" 
                         required>
                 </mat-form-field>
             </div>
@@ -33,7 +33,7 @@
                 <mat-form-field class="w-100">
                     <textarea matInput placeholder="Content"
                         name="content" 
-                        [(ngModel)]="newPostModel.content" 
+                        [(ngModel)]="postModel.content" 
                         required></textarea>
                     <mat-hint align="start"><strong>You can provide a HTML content here</strong> </mat-hint>
                 </mat-form-field>
