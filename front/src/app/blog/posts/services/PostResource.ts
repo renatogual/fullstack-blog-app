@@ -24,4 +24,8 @@ export class PostResource {
     public edit(editPostDto: EditPostDto): Observable<PostDto> {
         return this.httpClient.put(this.URL, editPostDto) as Observable<PostDto>;
     }
+
+    public delete(postId: number): Observable<any> {
+        return this.httpClient.delete(this.URL + '/' + postId);
+    }
 }

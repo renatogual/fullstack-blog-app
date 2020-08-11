@@ -7,6 +7,8 @@ import { CreatePostDialogComponent } from '../dialogs/CreatePostDialogComponent'
 import { finalize } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { EditPostDto } from '../services/dataModel/EditPostDto';
+import { ConfirmationDialogComponent } from '../../dialogs/ConfirmationDialogComponent';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -17,10 +19,13 @@ import { EditPostDto } from '../services/dataModel/EditPostDto';
 
 export class PostListComponent implements OnInit {
   public isLoading = false;
-  public displayedColumns: string[] = ['id', 'title', 'subTitle', 'imageUrl'];
+  public displayedColumns: string[] = ['id', 'title', 'subTitle', 'imageUrl', 'action'];
   private postListSubject: BehaviorSubject<PostDto[]> = new BehaviorSubject(null);
 
-  constructor(private postService: PostService, private matDialog: MatDialog) { }
+  constructor(private postService: PostService, 
+              private snackBar: MatSnackBar,
+              private matDialog: MatDialog) {
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -50,6 +55,25 @@ export class PostListComponent implements OnInit {
 
   }
 
+  public deletePost(postDto: PostDto) {
+    const ref = this.matDialog.open(ConfirmationDialogComponent);
+    ref.afterClosed().subscribe((canContinue) => {
+      if (canContinue) {
+        this.isLoading = true;
+        this.postService.deletePost(postDto.id)
+          .pipe(finalize(() => this.isLoading = false))
+          .subscribe(() => {
+            const list = this.postListSubject.getValue();
+            _.remove(list, post => post.id === postDto.id);
+            this.postListSubject.next(_.cloneDeep(list));
+            this.snackBar.open(`Post ${postDto.title} has been removed`, null, {
+              duration: 2500,
+            });
+          });
+      }
+    });
+  }
+
   public createPost() {
     const ref = this.matDialog.open(CreatePostDialogComponent, {
       width: '600px'
@@ -60,6 +84,9 @@ export class PostListComponent implements OnInit {
         const list = this.postListSubject.getValue();
         list.push(newPost);
         this.postListSubject.next(_.cloneDeep(list));
+        this.snackBar.open(`Post ${newPost.title} has been created`, null, {
+          duration: 2500,
+        });
       }
     });
   }

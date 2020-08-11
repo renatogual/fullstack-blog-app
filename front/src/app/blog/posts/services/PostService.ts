@@ -21,4 +21,8 @@ export class PostService {
     public editPost(editPostDto: EditPostDto): Observable<PostDto> {
         return this.postResource.edit(editPostDto);
     }
+
+    public deletePost(postId: number): Observable<void> {
+        return this.postResource.delete(postId);
+    }
 }
