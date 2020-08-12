@@ -66,7 +66,7 @@ export class PostListComponent implements OnInit {
             const list = this.postListSubject.getValue();
             _.remove(list, post => post.id === postDto.id);
             this.postListSubject.next(_.cloneDeep(list));
-            this.snackBar.open(`Post ${postDto.title} has been removed`, null, {
+            this.snackBar.open(`Post ${postDto.title} foi removido com sucesso`, null, {
               duration: 2500,
             });
           });
@@ -84,7 +84,7 @@ export class PostListComponent implements OnInit {
         const list = this.postListSubject.getValue();
         list.push(newPost);
         this.postListSubject.next(_.cloneDeep(list));
-        this.snackBar.open(`Post ${newPost.title} has been created`, null, {
+        this.snackBar.open(`Post ${newPost.title} foi criado com sucesso`, null, {
           duration: 2500,
         });
       }

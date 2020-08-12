@@ -1,11 +1,11 @@
-<h1 mat-dialog-title>New Post Dialog</h1>
+<h1 mat-dialog-title>Novo Post</h1>
 <form #form="ngForm">
     <div class="container-fluid mb-4 p-0">
         <div class="row">
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <input type="text" 
-                        matInput placeholder="Title"
+                        matInput placeholder="Titulo"
                         name="title" 
                         [(ngModel)]="postModel.title" 
                         required>
@@ -14,7 +14,7 @@
             <div class="col-6">
                 <mat-form-field class="w-100">
                     <input type="text" 
-                        matInput placeholder="SubTitle"
+                        matInput placeholder="SubTitulo"
                         name="subTitle" 
                         [(ngModel)]="postModel.subTitle" 
                         required>
@@ -23,7 +23,7 @@
             <div class="col-12">
                 <mat-form-field class="w-100">
                     <input type="text" 
-                        matInput placeholder="Image Url"
+                        matInput placeholder="Url da Imagem"
                         name="imageUrl" 
                         [(ngModel)]="postModel.imageUrl" 
                         required>
@@ -31,11 +31,11 @@
             </div>
             <div class="col-12">
                 <mat-form-field class="w-100">
-                    <textarea matInput placeholder="Content"
+                    <textarea matInput placeholder="Conteudo"
                         name="content" 
                         [(ngModel)]="postModel.content" 
                         required></textarea>
-                    <mat-hint align="start"><strong>You can provide a HTML content here</strong> </mat-hint>
+                    <mat-hint align="start"><strong>Você pode incluir seu conteúdo aqui</strong> </mat-hint>
                 </mat-form-field>
             </div>    
         </div>  
@@ -45,9 +45,9 @@
             (click)="submit(form)" 
             color="primary" 
             [disabled]="!form.valid">
-            Submit
+            Enviar
         </button>
-        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button mat-dialog-close>Cancelar</button>
     </div>
     <mat-dialog-actions *ngIf="isLoading">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>

@@ -11,24 +11,24 @@
         
           <!-- Title Column -->
           <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <th mat-header-cell *matHeaderCellDef> Titulo </th>
             <td mat-cell *matCellDef="let element"> {{element.title}} </td>
           </ng-container>
         
           <!-- SubTitle Column -->
           <ng-container matColumnDef="subTitle">
-            <th mat-header-cell *matHeaderCellDef> SubTitle </th>
+            <th mat-header-cell *matHeaderCellDef> SubTitulo </th>
             <td mat-cell *matCellDef="let element"> {{element.subTitle}} </td>
           </ng-container>
         
           <!-- Url Column -->
           <ng-container matColumnDef="imageUrl">
-            <th mat-header-cell *matHeaderCellDef> Image URL </th>
+            <th mat-header-cell *matHeaderCellDef> URL-Imagem </th>
             <td mat-cell *matCellDef="let element"> {{element.imageUrl}} </td>
           </ng-container>
 
           <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <th mat-header-cell *matHeaderCellDef> Ação </th>
             <td mat-cell *matCellDef="let element">
               <button mat-icon-button 
                       (click)="deletePost(element); $event.stopPropagation()"
@@ -51,7 +51,7 @@
   <div class="row">
     <div class="col-12 d-flex justify-content-end">
       <button mat-fab 
-              matTooltip="Create New Post" 
+              matTooltip="Criar novo Post" 
               (click)="createPost()"
               color="primary">
         <mat-icon>add</mat-icon>
