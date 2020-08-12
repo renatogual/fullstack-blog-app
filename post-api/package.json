@@ -1,8 +1,8 @@
 {
   "name": "post-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Fullstack blog",
+  "author": "José Renato F. Gualberto",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

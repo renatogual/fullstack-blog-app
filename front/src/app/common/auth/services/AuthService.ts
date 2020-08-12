@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthResource } from './AuthResource';
 import { AuthToken } from '../dataModel/AuthToken';
 import { Router } from '@angular/router';
-import { map } from 'lodash';
+import { map } from 'rxjs/operators';
 import * as _ from 'lodash';
 
 @Injectable()
