@@ -4,6 +4,9 @@ Este é um simples app de blog utilizando os frameworks NestJS e Angular 9
 
 Foi implementado um CRUD completo e uma autenticação de login somente no lado front para demonstrar o processo. (A criação da autenticação no back-end e verificação de entrada de dados no front está como projeto futuro)
 
+Foi seguido o tutorial do canal Codeforges TM
+link: https://www.youtube.com/watch?v=nz6yFTyLbAQ&list=PLq1kZ5GbKd4qyDcK3IHGSi4FDAL6fRZeL
+
 ## Ferramentas utilizadas :wrench: 
 - [Visual Studio Code](https://code.visualstudio.com/ "Visual Studio Code")
 - [NodeJS: 12.18.3 LTS](https://nodejs.org/en/ "NodeJS:12.18.3 LTS")
